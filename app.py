@@ -125,6 +125,9 @@ if __name__ == "__main__":
                     script = factory.script_writer_agent(analysis, review["feedback"])
                 
                 factory.save_to_db(topic_query, data, script)
+                # 强制在本地备份一份文件
+with open(f"backup_{topic_query}.md", "w", encoding="utf-8") as f:
+    f.write(script)
                 status.update(label="🎉 生成完毕并入库！", state="complete")
 
             st.markdown(script)
